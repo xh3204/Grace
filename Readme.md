@@ -1,4 +1,7 @@
 # GRACE
+Grace: Graph Self-Distillation and Completion to Mitigate Degree-Related Biases
+![Grace: Graph Self-Distillation and Completion to Mitigate Degree-Related Biases](system_model.png "Model Architecture")
+
 ## Installation
 1. conda create -n grace python=3.9.11
 2. conda activate grace
