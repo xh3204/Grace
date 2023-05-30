@@ -3,6 +3,8 @@ import os
 import os.path as osp
 
 import torch
+import torch.nn as nn
+from torch.nn import Module
 import torch.nn.functional as F
 import random
 import numpy as np
@@ -15,7 +17,7 @@ from torch_geometric.nn import SAGEConv
 from torch_geometric import datasets
 from torch_geometric.utils import to_undirected, degree, add_self_loops
 from torch_geometric.transforms import NormalizeFeatures
-from torch_geometric.nn import BatchNorm, MessagePassing
+from torch_geometric.nn import BatchNorm, LayerNorm, MessagePassing
 
 from utils import get_dataset, set_random_seeds
 
@@ -26,12 +28,6 @@ class LabelProp(MessagePassing):
     
     def message(self, x_j, edge_weight):
         return x_j if edge_weight is None else edge_weight.view(-1, 1) * x_j
-
-from torch_geometric.nn import SAGEConv
-from torch.nn import Module
-import torch.nn as nn
-import torch.nn.functional as F
-from torch_geometric.nn import BatchNorm, LayerNorm
 
 class GraphCP(torch.nn.Module):
     def __init__(self, in_channels, hidden_channels, out_channels):
